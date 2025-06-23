@@ -31,18 +31,7 @@ import {
   Linkedin
 } from 'lucide-react';
 
-const Homepage = () => {
-  return (
-    <div>
-      <h1>Welcome to Homepage</h1>
-      <Link to="/services">
-        <button>Go to Services</button>
-      </Link>
-    </div>
-  );
-};
-
-const services = [
+  const services = [
   {
     icon: Code,
     title: 'Programming & Tech',
@@ -195,7 +184,7 @@ const testimonials = [
   }
 ];
 
-function App() {
+const Homepage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -304,17 +293,24 @@ function App() {
           <h2>Popular Services</h2>
           <div className="services-grid">
             {services.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <div key={index} className="service-card">
-                  <div className={`service-icon ${service.color}`}>
-                    <IconComponent size={40} />
-                  </div>
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
-                </div>
-              );
-            })}
+  const IconComponent = service.icon;
+  const path = service.title.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-');
+
+  return (
+    <Link 
+      to={`/services/${path}`} 
+      key={index} 
+      className="service-card"
+      style={{ textDecoration: 'none', color: 'inherit' }}
+    >
+      <div className={`service-icon ${service.color}`}>
+        <IconComponent size={40} />
+      </div>
+      <h3>{service.title}</h3>
+      <p>{service.description}</p>
+    </Link>
+  );
+})}
           </div>
         </div>
       </section>
@@ -560,4 +556,5 @@ function App() {
   );
 }
 
-export default App;  
+
+export default Homepage;  

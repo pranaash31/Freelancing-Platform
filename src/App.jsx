@@ -8,7 +8,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/services" element={<ServiceCategoryPage />} />
+        <Route path="/services/:category" element={<ServiceCategoryPage />} />
       </Routes>
     </Router>
   );

@@ -1,4 +1,6 @@
+import { useParams } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
+import './ServiceCategoryPage.css';
 import { 
   Home, 
   ChevronRight, 
@@ -41,9 +43,9 @@ import {
   Info,
   ExternalLink
 } from 'lucide-react';
-import './ServiceCategoryPage.css';
 
 const ServiceCategoryPage = () => {
+  const { category } = useParams();
   const [favorites, setFavorites] = useState(new Set());
   const [bookmarks, setBookmarks] = useState(new Set());
   const [activeFilters, setActiveFilters] = useState({
@@ -70,8 +72,7 @@ const ServiceCategoryPage = () => {
   const [activeTab, setActiveTab] = useState('all');
 
   const searchInputRef = useRef(null);
-
-  const categories = [
+     const categories = [
     { id: 'all', name: 'All Categories', count: '190,000+' },
     { id: 'website-development', name: 'Website Development', count: '45,000+' },
     { id: 'ecommerce', name: 'E-Commerce Development', count: '12,000+' },
@@ -80,7 +81,7 @@ const ServiceCategoryPage = () => {
     { id: 'web-apps', name: 'Web Applications', count: '22,000+' },
     { id: 'maintenance', name: 'Website Maintenance', count: '6,800+' }
   ];
-
+   
   const platforms = [
     { name: 'WordPress', icon: '🌐', color: 'bg-gradient-to-br from-blue-500 to-blue-600', glow: 'shadow-blue-500/25', count: '45K+' },
     { name: 'Shopify', icon: '🛍️', color: 'bg-gradient-to-br from-green-500 to-emerald-600', glow: 'shadow-green-500/25', count: '28K+' },
@@ -91,8 +92,7 @@ const ServiceCategoryPage = () => {
     { name: 'WooCommerce', icon: '🛒', color: 'bg-gradient-to-br from-purple-600 to-pink-600', glow: 'shadow-purple-500/25', count: '18K+' },
     { name: 'React', icon: '⚛️', color: 'bg-gradient-to-br from-blue-400 to-cyan-500', glow: 'shadow-blue-400/25', count: '25K+' }
   ];
-
-  const filterOptions = {
+    const filterOptions = {
     serviceOptions: [
       { id: 'include-source-code', label: 'Include source code', count: 15420 },
       { id: 'responsive-design', label: 'Responsive design', count: 89650 },
@@ -698,7 +698,7 @@ const ServiceCategoryPage = () => {
       </div>
     );
   };
-
+  
   return (
     <div className="service-category-page">
       {/* Enhanced Navigation */}
