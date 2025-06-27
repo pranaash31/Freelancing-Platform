@@ -34,7 +34,7 @@ import {
   const services = [
   {
     icon: Code,
-    title: 'Programming & Tech',
+    title: 'Website Development',
     description: 'Custom software development, web applications, and technical solutions',
     color: 'icon-blue'
   },
@@ -294,23 +294,35 @@ const Homepage = () => {
           <div className="services-grid">
             {services.map((service, index) => {
   const IconComponent = service.icon;
-  const path = service.title.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-');
 
-  return (
-    <Link 
-      to={`/services/${path}`} 
-      key={index} 
-      className="service-card"
-      style={{ textDecoration: 'none', color: 'inherit' }}
-    >
+  const serviceCard = (
+    <div className="service-card">
       <div className={`service-icon ${service.color}`}>
         <IconComponent size={40} />
       </div>
       <h3>{service.title}</h3>
       <p>{service.description}</p>
+    </div>
+  );
+
+  // Define route path based on title
+    let routePath = '';
+  if (service.title === 'Website Development') {
+  routePath = '/service/Website Development';
+} else if (service.title === 'Graphics & Design') {
+  routePath = '/service/Graphics-Design';
+}
+
+
+  return routePath ? (
+    <Link to={routePath} key={index}>
+      {serviceCard}
     </Link>
+  ) : (
+    <div key={index}>{serviceCard}</div>
   );
 })}
+
           </div>
         </div>
       </section>
